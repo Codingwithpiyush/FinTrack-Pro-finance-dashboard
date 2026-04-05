@@ -1,16 +1,96 @@
-# React + Vite
+# 💰 FinTrack Pro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **Finance Dashboard** built using React, Node.js, and interactive UI components.
+This project helps users track income, expenses, savings, and financial insights in a clean and intuitive interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+* 📊 Dashboard Overview (Income, Spending, Savings)
+* 📈 Charts for financial trends
+* 💳 Debit Card UI (Realistic design)
+* 🔍 Search & Filter transactions
+* 🔐 Role-Based UI (Admin / Viewer)
+* 🌙 Dark / Light Mode
+* 🔗 Backend API integration (Node.js)
+* 📱 Responsive Design
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧠 Advanced Idea (In Progress)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* 🤖 AI-powered WhatsApp Assistant
+  Users can check their finances directly via WhatsApp chat.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React.js
+* CSS (Custom Styling)
+
+### Backend
+
+* Node.js
+* Express.js
+
+---
+
+## 📂 Project Structure
+
+frontend/
+├── src/
+│ ├── components/
+│ ├── styles/
+│ ├── App.jsx
+
+backend/
+├── server.js
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+
+git clone https://github.com/your-username/fintrack-pro.git
+
+---
+
+### 2️⃣ Install frontend dependencies
+
+cd frontend
+npm install
+npm run dev
+
+---
+
+### 3️⃣ Run backend server
+
+cd backend
+npm install
+node server.js
+
+---
+
+## 🌐 API Endpoints
+
+* GET /transactions → Fetch all transactions
+* POST /transactions → Add new transaction
+* DELETE /transactions/:id → Delete transaction
+
+---
+---
+
+## 🎯 Future Improvements
+
+* 🗄️ Database integration (MongoDB)
+* 🔐 Authentication system
+* 📊 Advanced analytics
+* 🤖 AI chatbot integration
+
+---
+
