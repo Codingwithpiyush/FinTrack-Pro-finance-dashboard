@@ -53,3 +53,24 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`🚀 FinTrack AI Server running at http://localhost:${PORT}`);
 });
+
+let transactions = [
+  { id: 1, name: "John", amount: 200, category: "Food" },
+  { id: 2, name: "Alice", amount: 150, category: "Shopping" },
+];
+
+app.get("/transactions", (req, res) => {
+  res.json(transactions);
+});
+
+app.post("/transactions", (req, res) => {
+  const newTx = { id: Date.now(), ...req.body };
+  transactions.push(newTx);
+  res.json(newTx);
+});
+
+app.delete("/transactions/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  transactions = transactions.filter((t) => t.id !== id);
+  res.json({ message: "Deleted" });
+});

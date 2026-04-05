@@ -4,14 +4,15 @@ export default function Transactions({ role }) {
   const [transactions, setTransactions] = useState([]);
   const [search, setSearch] = useState("");
 
-  // FETCH DATA
+  // 🔹 FETCH DATA FROM BACKEND
   useEffect(() => {
     fetch("http://localhost:5000/transactions")
-      .then(res => res.json())
-      .then(data => setTransactions(data));
+      .then((res) => res.json())
+      .then((data) => setTransactions(data))
+      .catch((err) => console.log(err));
   }, []);
 
-  // ADD
+  // 🔹 ADD TRANSACTION
   const addTransaction = () => {
     const newTx = {
       name: "New User",
@@ -26,20 +27,20 @@ export default function Transactions({ role }) {
       },
       body: JSON.stringify(newTx),
     })
-      .then(res => res.json())
-      .then(data => setTransactions([...transactions, data]));
+      .then((res) => res.json())
+      .then((data) => setTransactions([...transactions, data]));
   };
 
-  // DELETE
+  // 🔹 DELETE TRANSACTION
   const deleteTransaction = (id) => {
     fetch(`http://localhost:5000/transactions/${id}`, {
       method: "DELETE",
     }).then(() => {
-      setTransactions(transactions.filter(t => t.id !== id));
+      setTransactions(transactions.filter((t) => t.id !== id));
     });
   };
 
-  // SEARCH
+  // 🔹 SEARCH FILTER
   const filteredData = transactions.filter((t) =>
     t.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -48,14 +49,14 @@ export default function Transactions({ role }) {
     <div className="transactions">
       <h3>Latest Transactions</h3>
 
-      {/* ADMIN BUTTON */}
+      {/* 🔹 ADD BUTTON (ADMIN ONLY) */}
       {role === "admin" && (
         <button className="add-btn" onClick={addTransaction}>
           + Add Transaction
         </button>
       )}
 
-      {/* SEARCH */}
+      {/* 🔹 SEARCH */}
       <input
         type="text"
         placeholder="Search..."
@@ -63,6 +64,7 @@ export default function Transactions({ role }) {
         onChange={(e) => setSearch(e.target.value)}
       />
 
+      {/* 🔹 TABLE */}
       <table>
         <thead>
           <tr>
@@ -74,26 +76,29 @@ export default function Transactions({ role }) {
         </thead>
 
         <tbody>
-          {filteredData.map((t) => (
-            <tr key={t.id}>
-              <td>{t.name}</td>
-              <td>{t.category}</td>
-              <td>${t.amount}</td>
+          {filteredData.length > 0 ? (
+            filteredData.map((t) => (
+              <tr key={t.id}>
+                <td>{t.name}</td>
+                <td>{t.category}</td>
+                <td>${t.amount}</td>
 
-              {/* DELETE BUTTON */}
-              {role === "admin" && (
-                <td>
-                  <button onClick={() => deleteTransaction(t.id)}>
-                    Delete
-                  </button>
-                </td>
-              )}
+                {role === "admin" && (
+                  <td>
+                    <button onClick={() => deleteTransaction(t.id)}>
+                      Delete
+                    </button>
+                  </td>
+                )}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4">No transactions found</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
-
-      {filteredData.length === 0 && <p>No transactions found</p>}
     </div>
   );
 }
