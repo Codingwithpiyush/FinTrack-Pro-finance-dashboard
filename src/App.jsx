@@ -19,7 +19,7 @@ function App() {
 
   // 🔁 Load initial state
   useEffect(() => {
-    fetch("http://localhost:5000/reset")
+    fetch("http://localhost:7860/reset")
       .then(res => res.json())
       .then(data => setState(data.state))
       .catch(err => console.error(err));
@@ -28,7 +28,7 @@ function App() {
   // 🎮 Action handler
   const takeAction = async (action) => {
     try {
-      const res = await fetch("http://localhost:5000/step", {
+      const res = await fetch("http://localhost:7860/step", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
